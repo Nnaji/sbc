@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 		handlebars = require('gulp-compile-handlebars'),
 		imagemin = require('gulp-imagemin'),
 		newer = require('gulp-newer'),
+		clean = require('del'),
 		minifyCss = require('gulp-minify-css');
 
 var srcPath = 'src/',
@@ -33,7 +34,13 @@ gulp.task('images', function () {
 	.pipe(newer(images.out))
 	.pipe(imagemin())
 	.pipe(gulp.dest(images.out));
-})
+});
+
+/* Task to clean the dist Folder */
+gulp.task('clean', function (){
+	clean([distPath + '*']);
+});
+
 gulp.task('styles', function () {
 	gulp.src([styles.in])
 		.pipe(sourceMaps.init())
@@ -68,7 +75,7 @@ gulp.task('sbcTemplates', function(){
 gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {
 	console.log('Running default Task');
 	browserSync.init({
-		server: './'
+		server: './',
 	});
 
 	gulp.watch(['src/**/*', '*.html'], browserSync.reload);
