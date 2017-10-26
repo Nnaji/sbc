@@ -7,6 +7,8 @@ var gulp = require('gulp'),
 		imagemin = require('gulp-imagemin'),
 		newer = require('gulp-newer'),
 		clean = require('del'),
+		less = require('gulp-less'),
+		autoprefixer = require('gulp-autoprefixer'),
 		minifyCss = require('gulp-minify-css');
 
 var srcPath = 'src/',
@@ -17,7 +19,7 @@ var srcPath = 'src/',
 				out: distPath + 'img'
 			},
 			styles = {
-				in: srcPath + 'styles/**/*.css',
+				in: srcPath + 'styles/*.less',
 				out: distPath + 'styles'
 			},
 			scripts = {
@@ -44,21 +46,23 @@ gulp.task('clean', function (){
 gulp.task('styles', function () {
 	gulp.src([styles.in])
 		.pipe(sourceMaps.init())
+		.pipe(less())
+		.pipe(autoprefixer())
 		.pipe(rename('main.min.css'))
 		.pipe(minifyCss())
-		.pipe(sourceMaps.write())
+		.pipe(sourceMaps.write(rootPath + 'maps'))
 		.pipe(gulp.dest(styles.out))
 		.pipe(browserSync.stream());
 	console.log('CSS file or files minified');
 });
 
 gulp.task('scripts', function () {
-	gulp.src(['src/scripts/**/*.js'])
+	gulp.src([scripts.in])
 		.pipe(sourceMaps.init())
 		.pipe(rename('main.min.js'))
 		.pipe(uglify())
 		.pipe(sourceMaps.write())
-		.pipe(gulp.dest('dist/scripts'))
+		.pipe(gulp.dest(scripts.out))
 		.pipe(browserSync.stream());
 	console.log('JavaScript file or files uglified');
 });
@@ -78,10 +82,10 @@ gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {
 		server: './',
 	});
 
-	gulp.watch(['src/**/*', '*.html'], browserSync.reload);
-	gulp.watch('src/scripts/**/*.js', ['scripts']);
-	gulp.watch('src/styles/**/*.css', ['styles']);
-	gulp.watch('src/sbcTemplates/**/*.hbs', ['sbcTemplates']);
+	gulp.watch(['src/**/*', '*.html', '*.less'], browserSync.reload);
+	gulp.watch(scripts.in, ['scripts']);
+	gulp.watch(styles.in, ['styles']);
+	gulp.watch(sbcTemplates.in, ['sbcTemplates']);
 
 
 	//	gulp.watch('*.html', browserSync.)
