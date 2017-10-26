@@ -28,8 +28,17 @@ gulp.task('scripts', function () {
 	console.log('JavaScript file or files uglified');
 });
 
-gulp.task('default', function () {
-	console.log('This task is running');
+gulp.task('sbcTemplates', function(){
+	return gulp.src(['src/sbcTemplates/**/*.hbs'])
+		.pipe(handlebars())
+		.pipe(rename(function(path){
+			path.extname = '.html';
+		}))
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {
+	console.log('Running default Task');
 	browserSync.init({
 		server: './'
 	});
@@ -37,6 +46,8 @@ gulp.task('default', function () {
 	gulp.watch(['src/**/*', '*.html'], browserSync.reload);
 	gulp.watch('src/scripts/**/*.js', ['scripts']);
 	gulp.watch('src/styles/**/*.css', ['styles']);
+	gulp.watch('src/sbcTemplates/**/*.hbs', ['sbcTemplates']);
+
 
 	//	gulp.watch('*.html', browserSync.)
 });
