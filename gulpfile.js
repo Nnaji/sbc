@@ -1,18 +1,46 @@
 var gulp = require('gulp'),
-	browserSync = require('browser-sync').create(),
-	uglify = require('gulp-uglify'),
-	rename = require('gulp-rename'),
-	sourceMaps = require('gulp-sourcemaps'),
-	handlebars = require('gulp-compile-handlebars'),
-	minifyCss = require('gulp-minify-css');
+		browserSync = require('browser-sync').create(),
+		uglify = require('gulp-uglify'),
+		rename = require('gulp-rename'),
+		sourceMaps = require('gulp-sourcemaps'),
+		handlebars = require('gulp-compile-handlebars'),
+		imagemin = require('gulp-imagemin'),
+		newer = require('gulp-newer'),
+		minifyCss = require('gulp-minify-css');
 
+var srcPath = 'src/',
+			distPath = 'dist/',
+			rootPath = './',
+			images = {
+				in: srcPath + 'img/*.*',
+				out: distPath + 'img'
+			},
+			styles = {
+				in: srcPath + 'styles/**/*.css',
+				out: distPath + 'styles'
+			},
+			scripts = {
+				in: srcPath + 'scripts/**/*.js',
+				out: distPath + 'scripts'
+			},
+			sbcTemplates = {
+				in: srcPath + 'sbcTemplates/**/*.hbs',
+				out: rootPath
+			};
+
+gulp.task('images', function () {
+	gulp.src(images.in)
+	.pipe(newer(images.out))
+	.pipe(imagemin())
+	.pipe(gulp.dest(images.out));
+})
 gulp.task('styles', function () {
-	gulp.src(['src/styles/**/*.css'])
+	gulp.src([styles.in])
 		.pipe(sourceMaps.init())
 		.pipe(rename('main.min.css'))
 		.pipe(minifyCss())
 		.pipe(sourceMaps.write())
-		.pipe(gulp.dest('dist/styles'))
+		.pipe(gulp.dest(styles.out))
 		.pipe(browserSync.stream());
 	console.log('CSS file or files minified');
 });
@@ -29,12 +57,12 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('sbcTemplates', function(){
-	return gulp.src(['src/sbcTemplates/**/*.hbs'])
+	return gulp.src([sbcTemplates.in])
 		.pipe(handlebars())
 		.pipe(rename(function(path){
 			path.extname = '.html';
 		}))
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest(sbcTemplates.out));
 });
 
 gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {

@@ -21,6 +21,13 @@ object {
     place your custom styles below here
 ========================================== */
 
+body {
+
+}
+
+h1 {
+ color: pink;
+}
 
 
 
