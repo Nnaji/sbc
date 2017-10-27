@@ -19,7 +19,7 @@ var srcPath = 'src/',
 				out: distPath + 'img'
 			},
 			styles = {
-				in: srcPath + 'styles/*.less',
+				in: srcPath + 'styles/**/*.less',
 				out: distPath + 'styles'
 			},
 			scripts = {
