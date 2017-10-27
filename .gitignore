@@ -3,3 +3,4 @@ img
 *.html
 dist
 .DS_Store
+log

@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 		less = require('gulp-less'),
 		autoprefixer = require('gulp-autoprefixer'),
 		minifyCss = require('gulp-minify-css');
-
+// var dataFile = require(srcPath + 'scripts/main.js');
 var srcPath = 'src/',
 			distPath = 'dist/',
 			rootPath = './',
@@ -19,8 +19,8 @@ var srcPath = 'src/',
 				out: distPath + 'img'
 			},
 			styles = {
-				in: srcPath + 'styles/**/*.less',
-				out: distPath + 'styles'
+				in: srcPath + 'styles/*.less',
+				out: distPath + 'styles/'
 			},
 			scripts = {
 				in: srcPath + 'scripts/**/*.js',
@@ -68,8 +68,15 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('sbcTemplates', function(){
-	return gulp.src([sbcTemplates.in])
-		.pipe(handlebars())
+	var templateData = {
+		title: ''
+	};
+	var options = {
+		batch: [srcPath + 'sbcTemplates/hbspatials']
+	};
+console.log(templateData.name);
+	return gulp.src([sbcTemplates.in, !sbcTemplates + 'hbspatials/**/*.hbs'])
+		.pipe(handlebars(templateData, options))
 		.pipe(rename(function(path){
 			path.extname = '.html';
 		}))
@@ -81,8 +88,7 @@ gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {
 	browserSync.init({
 		server: './',
 	});
-
-	gulp.watch(['src/**/*', '*.html', '*.less'], browserSync.reload);
+	gulp.watch(['src/**/*', '*.html', '**/*.less'], browserSync.reload);
 	gulp.watch(scripts.in, ['scripts']);
 	gulp.watch(styles.in, ['styles']);
 	gulp.watch(sbcTemplates.in, ['sbcTemplates']);
