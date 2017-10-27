@@ -69,7 +69,13 @@ gulp.task('scripts', function () {
 
 gulp.task('sbcTemplates', function(){
 	var templateData = {
-		title: ''
+		companyName: 'Summer Beauty Cosmetic',
+		address:	'Werdstrasse 40, 2.Stock',
+		postCode: '8004 ',
+		city: 'Zürich, ',
+		country: 'Switzerland',
+		phoneNumber: '+41 (0)79 336 20 66',
+		email: 'info@summerbeautycosmetic.com'
 	};
 	var options = {
 		batch: [srcPath + 'sbcTemplates/hbspatials']
@@ -88,9 +94,9 @@ gulp.task('default',['styles', 'scripts', 'sbcTemplates'], function () {
 	browserSync.init({
 		server: './',
 	});
-	gulp.watch(['src/**/*', '*.html', '**/*.less'], browserSync.reload);
+	gulp.watch(['src/**/*', '*.html', srcPath +'styles/**/*.less'], browserSync.reload);
 	gulp.watch(scripts.in, ['scripts']);
-	gulp.watch(styles.in, ['styles']);
+	gulp.watch(srcPath +'styles/**/*.less', ['styles']);
 	gulp.watch(sbcTemplates.in, ['sbcTemplates']);
 
 
