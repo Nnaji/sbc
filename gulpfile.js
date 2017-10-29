@@ -61,7 +61,7 @@ gulp.task('scripts', function () {
 		.pipe(sourceMaps.init())
 		.pipe(rename('main.min.js'))
 		.pipe(uglify())
-		.pipe(sourceMaps.write())
+		.pipe(sourceMaps.write(rootPath + 'maps'))
 		.pipe(gulp.dest(scripts.out))
 		.pipe(browserSync.stream());
 	console.log('JavaScript file or files uglified');
