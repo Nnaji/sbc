@@ -1,12 +1,7 @@
-class Person{
-  constructor(name){
-     this.name = name;
-  }
-  sayHello(){
-    return 'Hello ' + this.name;
+"use strict";
 
-  }
-}
+$(function() {
 
-var person = new Person('Mike');
-document.write(person.sayHello());
+// Nav Tab Section 
+   $('.nav-tabs a:first').tab('show');
+}())
