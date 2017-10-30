@@ -9,8 +9,12 @@ var gulp = require('gulp'),
 		clean = require('del'),
 		less = require('gulp-less'),
 		autoprefixer = require('gulp-autoprefixer'),
+		babel = require('gulp-babel'),
 		minifyCss = require('gulp-minify-css');
-// var dataFile = require(srcPath + 'scripts/main.js');
+
+
+		var fs = require("fs");
+ var dataFile = 'src/scripts/main.js';
 var srcPath = 'src/',
 			distPath = 'dist/',
 			rootPath = './',
@@ -58,6 +62,9 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function () {
 	gulp.src([scripts.in])
+	.pipe(babel({
+		presets: ['es2015']
+	}))
 		.pipe(sourceMaps.init())
 		.pipe(rename('main.min.js'))
 		.pipe(uglify())
@@ -75,7 +82,8 @@ gulp.task('sbcTemplates', function(){
 		city: 'Zürich, ',
 		country: 'Switzerland',
 		phoneNumber: '+41 (0)79 336 20 66',
-		email: 'info@summerbeautycosmetic.com'
+		email: 'info@summerbeautycosmetic.com',
+		myfile: dataFile
 	};
 	var options = {
 		batch: [srcPath + 'sbcTemplates/hbspatials']
