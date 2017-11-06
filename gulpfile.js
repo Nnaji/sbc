@@ -9,8 +9,17 @@ var gulp = require('gulp'),
 		clean = require('del'),
 		less = require('gulp-less'),
 		autoprefixer = require('gulp-autoprefixer'),
+		babel = require('gulp-babel'),
+		concat = require('gulp-concat'),
 		minifyCss = require('gulp-minify-css');
-// var dataFile = require(srcPath + 'scripts/main.js');
+
+
+		// Testing ES6 Class 
+		const Person = require("./src/scripts/test");
+		let person = new Person('Kingsley', 'Nnaji');
+		let myfullname = person.fullname();
+
+ var dataFile = 'src/scripts/main.js';
 var srcPath = 'src/',
 			distPath = 'dist/',
 			rootPath = './',
@@ -23,8 +32,8 @@ var srcPath = 'src/',
 				out: distPath + 'styles/'
 			},
 			scripts = {
-				in: srcPath + 'scripts/**/*.js',
-				out: distPath + 'scripts'
+				in: srcPath + 'scripts/*.js',
+				out: distPath + 'scripts/'
 			},
 			sbcTemplates = {
 				in: srcPath + 'sbcTemplates/**/*.hbs',
@@ -38,10 +47,10 @@ gulp.task('images', function () {
 	.pipe(gulp.dest(images.out));
 });
 
-/* Task to clean the dist Folder */
-gulp.task('clean', function (){
-	clean([distPath + '*']);
-});
+gulp.task('clean', function(){
+	clean(distPath + '*');
+	console.log('files in : ' + distPath + ' folder are deleted');
+})
 
 gulp.task('styles', function () {
 	gulp.src([styles.in])
@@ -57,17 +66,25 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-	gulp.src([scripts.in])
+	console.log('JavaScript file or files uglified');
+gulp.src([scripts.in, '!src/scripts/test.js'])
+	.pipe(babel({
+		presets: ['es2015']
+	}))
 		.pipe(sourceMaps.init())
+		.pipe(concat('main.js', function(){
+			console.log(myfullname);
+			console.log('concatinating the Files');
+		}))
 		.pipe(rename('main.min.js'))
 		.pipe(uglify())
-		.pipe(sourceMaps.write(rootPath + 'maps'))
+		.pipe(sourceMaps.write('maps'))
 		.pipe(gulp.dest(scripts.out))
 		.pipe(browserSync.stream());
-	console.log('JavaScript file or files uglified');
 });
 
 gulp.task('sbcTemplates', function(){
+	
 	var templateData = {
 		companyName: 'Summer Beauty Cosmetic',
 		address:	'Werdstrasse 40, 2.Stock',
@@ -75,13 +92,14 @@ gulp.task('sbcTemplates', function(){
 		city: 'Zürich, ',
 		country: 'Switzerland',
 		phoneNumber: '+41 (0)79 336 20 66',
-		email: 'info@summerbeautycosmetic.com'
+		email: 'info@summerbeautycosmetic.com',
+		fullName: myfullname,
 	};
 	var options = {
 		batch: [srcPath + 'sbcTemplates/hbspatials']
 	};
-console.log(templateData.name);
-	return gulp.src([sbcTemplates.in, !sbcTemplates + 'hbspatials/**/*.hbs'])
+
+	return gulp.src([sbcTemplates.in, '!src/sbcTemplates/hbspatials/**/*.hbs'])
 		.pipe(handlebars(templateData, options))
 		.pipe(rename(function(path){
 			path.extname = '.html';
