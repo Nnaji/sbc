@@ -50,7 +50,7 @@ gulp.task('images', function () {
 gulp.task('clean', function(){
 	clean(distPath + '*');
 	console.log('files in : ' + distPath + ' folder are deleted');
-})
+});
 
 gulp.task('styles', function () {
 	gulp.src([styles.in])
