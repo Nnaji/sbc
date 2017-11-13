@@ -1,12 +1,13 @@
 (function($){
   "use strict";
    // Dropdow Menu Sections
+   var dropDownMenu = $('.dropdown-menu', this);
    $('ul.nav li.dropdown')
    .mouseenter(function(){
-     $('.dropdown-menu', this).slideDown('slow');
+     dropDownMenu.slideDown('fast');
 
    }) .mouseleave(function(){
-      $('.dropdown-menu', this).slideUp('slow');
+      dropDownMenu.slideUp('fast');
   });
   // Nav Tab Section 
   $('.nav-tabs a:first').tab('show', 'slow');
