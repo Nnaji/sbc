@@ -2,6 +2,10 @@ class Modal{
     constructor(){
 
     }
+
+    mEvents(){
+        
+    }
     mOpen(){
 
     }
