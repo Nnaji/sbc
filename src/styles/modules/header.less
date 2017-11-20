@@ -1,165 +1,141 @@
-
-html,
-body {
-        height: 100%;
-        background-color: @sbcBackground;
-     //   padding-top: 84px;
-        font-family: 'Open Sans', sans-serif;
-        line-height: 1.6;
-        letter-spacing: 0.5px;
-        font-size: 14px;
-        font-weight: 300;
-}
-body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 header {
     
-    // background-color: @pageHeader;
-    background-color: #f2f2f2;
+    background-color: @pageHeader;
+    // background-color: @background-grey;
 
-}
+    p {
+        padding: 10px;
+        text-align: center;
+        margin: 10px 20px 10px 0;
+    }
 
-header p {
-    padding: 10px;
-    text-align: center;
-    margin: 10px 20px 10px 0;
-}
+    h2 {
+        margin: 50px 0 0 0;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+    }
 
-header h2 {
-    margin: 50px 0 0 0;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 200;
+
 }
 
 /* Top Menu Section */
-ul.navbar-nav li {
-	background-color: #222;
-	padding: 0;
-	margin: 0 10px;
-}
 
-.dropdown {
-	background-color: #222;
-	border-radius: 0px;
 
-}
-
-.dropdown-menu {
+.dropdown, .dropdown-menu, ul.navbar-nav li {
+    background-color: @menu-background-blue;
 	min-width: 100px;
 	border-radius: 0px;
-    background-color: #222;
-	
+    color: @top-menu-color;
+    a {
+        color: @top-menu-color;
+        }
 }
 
-.dropdown-menu li {
-	background-color: #222;
-    background: transparent;
+
+
+
+.navbar-default .navbar-nav > li > a {
+color: @top-menu-color;
+font-size: 1em;
 }
- .navbar{
+
+
+ .navbar {
 	padding: 10px 0;
-	background: transparent;
 }
 
- .navbar-default{
-    background-color: #222;
+ .navbar-default {
+    background-color: @menu-background-blue;
     border: none;
-    // box-shadow: 0px 5px 5px rgba(255,255,255,0.4);
-	padding-bottom: 10px;
+
+    .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+        color: @top-menu-color-hover;
+    }
+
+    .navbar-nav a {
+        line-height: 1.4em;
+        margin-left: 12px;
+        margin-right: 12px;
+        
+    }
+
 }
- .navbar-default .navbar-nav a {
-	line-height: 1.4em;
-	padding: 5px 8px;
-	margin-left: 12px;
-	margin-right: 12px;
-}
+
  .navbar-default .navbar-nav .active a{
-	font-weight: 200;
-	color: rgba(255, 153, 0, 1);
+	color: @top-menu-color-hover;
+    border-bottom: 1px solid rgba(41, 170, 226, 1);
+}
+ .navbar-default .navbar-nav a:hover {
 	background: transparent;
-	border-bottom: 1px solid rgba(41, 170, 226, 1);
-}
- .navbar-default .navbar-nav a:hover{
-	background: transparent;
-	color: green;
+    color: @top-menu-color-hover;
 
 }
 
-.navbar-default .navbar-nav a {
-     color: #777;
-}
 
-/** Navbar brand **/
-
-/*  .navbar-brand{
-	background: url('../../../src/img/sbclogo.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    margin: 10px 0 0;
-    background: #333;
-    z-index: 3;
-	background-position: 10px 0;
-
-} */
-
+/** Navbar brand Sections **/
 
  .navbar-brand h1 {
-	color: #fff;
-	margin-top: 0;
+	margin-top: 2px;
 	font-size: 1.8em;
     padding-left: 0;
     position: absolute;
     left: 10px;
     z-index: -2;
     top: 0px;
-    background: #222;
+    background: lighten(@top-menu-color-hover, 10%);
     text-align: center;
     border-radius: 100%;
-    width: 90px;
-    height: 116px;
-    // box-shadow: 0px 5px 5px rgba(255,255,255,0.4);
+    border: 1px solid #fff;
+    width: 85px;
+    height: 110px;
 }
 
-
  .navbar-toggle {
-	background-color: rgba(255, 153, 0, 1) ;
-	border: rgba(41, 170, 226, 1);
+	background-color: @menu-background-blue ;
 }
 
  .navbar-default .navbar-toggle .icon-bar{
-	border: 1px solid rgba(41, 170, 226, 1) ;
+	border: 1px solid @top-menu-color-hover;
 
 }
 
-/* Home Page Carousel */
+/* Landing Page Carousel */
 
 header.carousel {
     height: 45%;
-}
 
-header.carousel .item,
-header.carousel .item.active,
-header.carousel .carousel-inner {
-    height: 100%;
-}
-
-header.carousel .fill {
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-}
-
-
-.carousel-indicators .active{
-   // background-color: rgb(128, 47, 47);
-    background-color: rgba(255, 153, 0, 1) ;
+    .fill {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+    
+    .item, .item.active, .carousel-inner {
+        height: 100%;
+    }
+    
 }
 
 
-/* Responsive Styles */
+.carousel-indicators {
+
+    .active{
+        background-color: @menu-background-blue;
+    }
+
+    li{
+        border: 2px solid  @top-menu-color;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 1px;
+        
+    }
+}
+
+
+/* Responsive Styles Media Queries */
 
 @media(max-width:991px) {
     .customer-img,
@@ -178,13 +154,27 @@ header.carousel .fill {
     }
 }
 
-@media only screen and (max-width: 768px){
-	header .navbar-collapse{
-	background-color: rgba(0,0,0, .3);
-}
-	header .navbar-default .navbar-nav .active a{
+@media only screen and (max-width: 768px) {
+	header .navbar-collapse {
+    background-color: rgba(0,0,0, .3);
+     .navbar-default .navbar-nav .active a {
 		border-bottom: none;
-	}
+    }
+}
+       .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        border-color:rgba(0,0,0, .3);
+        }
+        .navbar-collapse {
+            padding-left: 0px;
+            border-top: none;
+            box-shadow: inset 0px 0px 0px rgba(0,0,0,0);
 
+        }
+
+        
+       .navbar-collapse.in {
+            overflow-y: visible;
+            padding-top: 0px
+           }
 }
 
