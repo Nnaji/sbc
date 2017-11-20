@@ -21,5 +21,5 @@
       // Current activ
 /* $("a:contains('HOME')").parent().addClass('active');
 $("a:contains('About')").parent().addClass('active'); */
- 
+
     })(jQuery);
