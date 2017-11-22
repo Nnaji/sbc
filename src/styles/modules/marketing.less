@@ -28,7 +28,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: #6f6660;
+	background-color: @sbcBackground; // #6f6660;
 	color: #fff;
 	// color: lighten(@mtFonts-color, 30%);
 	text-align: left;
@@ -39,35 +39,41 @@
 }
 
 
-.mycontent:hover .overlay {
-	height: 70%;
-	background: rgba(0, 0, 0, 0.8);
-	transition: .9s background ease;
-	color: #fff;
-	font-size: 11px;
-}
-
 .text {
 	position: absolute;
 	overflow: hidden;
 	padding-left: 10px;
 	padding-right: 10px;
-}
 
-.text p{
-	opacity: 0;
-}
+	p{
+		opacity: 0;
+	}
 
-.text h3{
-	font-size: 1.5em;
-	font-weight: 100;
-	padding-bottom: 2px;
+	h3{
+		font-size: 1.5em;
+		font-weight: 100;
+		padding-bottom: 2px;
+	}
+	
 }
-.mycontent:hover h3{
-	font-size: 1.2em;
-}
-.mycontent:hover .text p{
-	opacity: 1;
+ 
+.mycontent:hover {
+	.overlay {
+		height: 70%;
+		background: rgba(0, 0, 0, 0.8);
+		transition: .9s background ease;
+		color: #fff;
+		font-size: 12px;
+	}
+
+	h3{
+		font-size: 1.2em;
+	}
+
+	.text p{
+		opacity: 1;
+	}
+
 }
 
 .padding-top {
@@ -104,6 +110,16 @@
 		overflow: hidden;
 		padding-left: 10px;
 		padding-right: 10px;
+
+		p{
+			opacity: 0;
+			font-size: 11px;
+		}
+
+		h4{
+			font-size: 1em;
+		}
+	
 	}
 	
 	.mycontent {
@@ -116,20 +132,20 @@
 		height: auto;
 		// overflow:hidden;
 	}
+
+	.mycontent:hover {
+
+		h4{
+			font-size: 1em;
+			}
+
 	.text p{
-		opacity: 0;
+			opacity: 0;
+			font-size: 11px;
+			}
+			
 	}
 
-	.text h3{
-        font-size: 1em;
-	}
-	.mycontent:hover h3{
-	font-size: 1em;
-	}
-	.mycontent:hover .text p{
-		opacity: 0;
-    }
-    
    .overlay {
         height: 100%;
         display: none;
