@@ -94,7 +94,35 @@ gulp.task('sbcTemplates', function(){
 		phoneNumber: '+41 (0)79 336 20 66',
 		email: 'info@summerbeautycosmetic.com',
 		fullName: myfullname,
+		items:[
+			{
+				brandName: 'dermalogica',
+				brandLinks: 'http://www.dermalogica.com',
+				imgSrc: './src/img/logo-dermalogica.png'
+	
+			},
+			{
+				brandName: 'opi',
+				brandLinks: 'http://www.opiswiss.ch',
+				imgSrc: './src/img/logo-opi.png'
+	
+			},
+			{
+				brandName: 'mavex',
+				brandLinks: 'http://www.mavexsa.com',
+				imgSrc: './src/img/logo-mavex.png'
+	
+			},
+			{
+				brandName: 'intraceuticals',
+				brandLinks: 'https://www.intraceuticals.com',
+				imgSrc: './src/img/intraceuticals-logo.png'
+	
+			}
+		],
 	};
+
+
 	var options = {
 		batch: [srcPath + 'sbcTemplates/hbspatials']
 	};

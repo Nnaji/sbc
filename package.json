@@ -18,6 +18,8 @@
     "browser-sync": "^2.18.13",
     "browsersync": "0.0.1-security",
     "del": "^3.0.0",
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^4.7.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^7.0.0",

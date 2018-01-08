@@ -1,24 +1,33 @@
+{{>brands}}
 <footer id="footer-section" class="f-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-md-4 col-sm-4">
         <address id="c-address">
           <strong>{{companyName}} </strong><br>
           {{address}}<br>
            {{postCode}} {{city}} {{country}}<br>
-           <abbr title="Phone" class="glyphicon glyphicon-earphone"> P:</abbr> {{phoneNumber}} <br>
-           <abbr title="email" class="glyphicon glyphicon-envelope"> Email:</abbr> {{email}}
-           <p><i class="glyphicon glyphicon-time"></i> 
-                    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+           <abbr title="Phone" class="glyphicon glyphicon-earphone"></abbr> {{phoneNumber}} <br>
+           <abbr title="email" class="glyphicon glyphicon-envelope"></abbr> {{email}}
         </address>
         
   </div>
-          <div class="col-lg-4">
-            &copy; Summer Beauty Cosmetic 2010 - 2017
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            &copy; {{companyName}} 2018
           </div>
+ <div class="col-lg-4 col-md-4 col-sm-4 social-media">
+              
+                      <a href="https://www.instagram.com/summerbeautyzh/" target="blank" alt="instagram">
+                          <i class="fa fa-instagram fa-2x" aria-hidden="true"></i> </a>
+            </div>
+    </div>
+    </div>     
 </footer>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="dist/scripts/main.min.js"></script>
+  <script src="dist/scripts/jqBootstrapValidation.js"></script>
+    <script src="dist/scripts/contact_me.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
+    <script src="dist/scripts/main.min.js"></script>
 </body>
 </html>

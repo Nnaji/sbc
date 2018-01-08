@@ -4,17 +4,17 @@ section {
 
 table {
     thead th {
-        background-color: @background-blue-darker; // #6f6660;
-        color: #fff;
+        background-color: @background-blue-darker; // #6f6660; // @menu-background-blue;
+        color: @top-menu-color-hover;
     }
     
     tr td {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid @body-section-background;
     }
     
-    tbody td {
-        border-left: 0.5px solid black;
-    }
+  //  tbody td {
+       // border-left: 0.5px solid black;
+   // }
     
 }
 
@@ -43,5 +43,16 @@ table {
     color: @menu-background-blue;
 }
 
-/* Angebot Navigation */
+.stern {
+    color: red;
+    padding-right: 5px;
+}
 
+/* Weiter Angebot Navigation */
+
+span.w-angebot a {
+    color: @top-menu-color-hover;
+    &:hover {
+        color: @menu-background-blue;
+    }
+}
